@@ -91,7 +91,7 @@ Coin.prototype.type = "coin";
 
 function Platform(pos) {
 	this.pos = pos;
-	this.size = new Vector(1, 1);
+	this.size = new Vector(3, 1);
 	this.speed = new Vector(2, 0);
 	
 }
