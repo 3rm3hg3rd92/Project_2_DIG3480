@@ -233,6 +233,8 @@ Level.prototype.obstacleAt = function(pos, size) {
   // Consider the sides and top and bottom of the level as walls
   if (xStart < 0 || xEnd > this.width || yStart < 0)
     return "wall";
+  if (xStart < 0 || xEnd > this.width || yStart <0)
+	return "platform";  
   if (yEnd > this.height)
     return "lava";
 
