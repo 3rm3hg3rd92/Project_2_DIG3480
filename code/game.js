@@ -3,6 +3,7 @@ var actorChars = {
   "o": Coin, // A coin will wobble up and down
   "=": Lava, "|": Lava, "v": Lava, "<":Lava  
 };
+
 function Level(plan) {
   // Use the length of a single row to set the width of the level
   this.width = plan[0].length;
@@ -13,7 +14,7 @@ function Level(plan) {
   // Store the individual tiles in our own, separate array
   this.grid = [];
   
-   this.actors = [];
+  this.actors = [];
 
   // Loop through each row in the plan, creating an array in our grid
   for (var y = 0; y < this.height; y++) {
@@ -42,6 +43,9 @@ function Level(plan) {
     // Push the entire row onto the array of rows.
     this.grid.push(gridLine);
   }
+  this.player = this.actors.filter(function(actor) {
+    return actor.type == "player";
+  })[0];
 }
 
 Level.prototype.isFinished = function() {
