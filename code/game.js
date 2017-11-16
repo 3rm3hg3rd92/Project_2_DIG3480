@@ -38,6 +38,8 @@ function Level(plan) {
       // Because there is a third case (space ' '), use an "else if" instead of "else"
       else if (ch == "!")
         fieldType = "lava";
+	  else if (ch == "y")
+		fieldType = "platform";  
 
       // "Push" the fieldType, which is a string, onto the gridLine array (at the end).
       gridLine.push(fieldType);
@@ -89,7 +91,7 @@ function Coin(pos) {
 }
 Coin.prototype.type = "coin";
 
-function Platform(pos) {
+function Platform(pos, ch) {
 	this.pos = pos;
 	this.size = new Vector(3, 1);
 	this.speed = new Vector(2, 0);
