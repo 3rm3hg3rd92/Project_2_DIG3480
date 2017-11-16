@@ -29,7 +29,7 @@ function Level(plan) {
       // Use if and else to handle the three cases
       if (Actor)
         // Create a new player at that grid position.
-        this.player = new Actor(new Vector(x, y), ch);
+        this.actors.push = new Actor(new Vector(x, y), ch);
       else if (ch == "x")
         fieldType = "wall";
       // Because there is a third case (space ' '), use an "else if" instead of "else"
