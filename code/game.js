@@ -12,6 +12,8 @@ function Level(plan) {
 
   // Store the individual tiles in our own, separate array
   this.grid = [];
+  
+   this.actors = [];
 
   // Loop through each row in the plan, creating an array in our grid
   for (var y = 0; y < this.height; y++) {
@@ -316,8 +318,6 @@ Player.prototype.moveY = function(step, level, keys) {
   } else {
     this.pos = newPos;
   }
-  //this.pos = newPos;
-
 };
 
 Player.prototype.act = function(step, level, keys) {
