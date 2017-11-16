@@ -25,10 +25,11 @@ function Level(plan) {
       // If the character is ' ', assign null.
 
       var ch = line[x], fieldType = null;
+	  var Actor = actorChars[ch];
       // Use if and else to handle the three cases
-      if (ch==='@')
+      if (Actor)
         // Create a new player at that grid position.
-        this.player = new Player(new Vector(x, y));
+        this.player = new Actor(new Vector(x, y), ch);
       else if (ch == "x")
         fieldType = "wall";
       // Because there is a third case (space ' '), use an "else if" instead of "else"
