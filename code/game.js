@@ -146,17 +146,17 @@ DOMDisplay.prototype.drawBackground = function() {
 };
 
 // Draw the player agent
-DOMDisplay.prototype.drawPlayer = function() {
+DOMDisplay.prototype.drawActors = function() {
   // Create a new container div for actor dom elements
   var wrap = elt("div");
-
-  var actor = this.level.player;
-  var rect = wrap.appendChild(elt("div",
+ this.level.actors.forEach(function(actor) {
+    var rect = wrap.appendChild(elt("div",
                                     "actor " + actor.type));
-  rect.style.width = actor.size.x * scale + "px";
-  rect.style.height = actor.size.y * scale + "px";
-  rect.style.left = actor.pos.x * scale + "px";
-  rect.style.top = actor.pos.y * scale + "px";
+    rect.style.width = actor.size.x * scale + "px";
+    rect.style.height = actor.size.y * scale + "px";
+    rect.style.left = actor.pos.x * scale + "px";
+    rect.style.top = actor.pos.y * scale + "px";
+  });
   return wrap;
 };
 
