@@ -1,6 +1,7 @@
 var actorChars = {
   "@": Player,
   "o": Coin, // A coin will wobble up and down
+  "y": Platform,
   "=": Lava, "|": Lava, "v": Lava, "<": Lava  
 };
 
@@ -87,6 +88,14 @@ function Coin(pos) {
   this.wobble = Math.random() * Math.PI * 2;
 }
 Coin.prototype.type = "coin";
+
+function Platform(pos) {
+	this.pos = pos;
+	this.size = new Vector(1, 1);
+	this.speed = new Vector(2, 0);
+	
+}
+Platform.prototype.type = "platform";
 
 // Lava is initialized based on the character, but otherwise has a
 // size and position
@@ -309,6 +318,17 @@ Coin.prototype.act = function(step) {
 var maxStep = 0.05;
 
 var playerXSpeed = 7;
+
+Platform.prototype.act = function(step, level) {
+	
+	var newPos = this.pos.plus(this.speed.times(step));
+  if (!level.obstacleAt(newPos, this.size))
+    this.pos = newPos;
+  else if (this.repeatPos)
+    this.pos = this.repeatPos;
+  else
+    this.speed = this.speed.times(-1);
+}
 
 Player.prototype.moveX = function(step, level, keys) {
   this.speed.x = 0;
