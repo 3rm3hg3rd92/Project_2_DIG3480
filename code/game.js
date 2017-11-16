@@ -43,6 +43,10 @@ function Level(plan) {
   }
 }
 
+Level.prototype.isFinished = function() {
+  return this.status != null && this.finishDelay < 0;
+};
+
 function Vector(x, y) {
   this.x = x; this.y = y;
 }
