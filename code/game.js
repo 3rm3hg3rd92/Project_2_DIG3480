@@ -522,6 +522,7 @@ function runGame(plans, Display) {
     runLevel(new Level(plans[n]), Display, function(status) {
       if (status == "lost")
         startLevel(n);
+	    console.log("Try again");
       else if (n < plans.length - 1)
         startLevel(n + 1);
       else
