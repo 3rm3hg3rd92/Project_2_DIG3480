@@ -411,9 +411,11 @@ Player.prototype.act = function(step, level, keys) {
   var otherActor = level.actorAt(this);
   if (otherActor)
     level.playerTouched(otherActor.type, otherActor);
+    //textSize("")
 
   // Losing animation
   if (level.status == "lost") {
+	console.log("try again");  
     this.pos.y += step;
     this.size.y -= step;
   }
@@ -522,7 +524,6 @@ function runGame(plans, Display) {
     runLevel(new Level(plans[n]), Display, function(status) {
       if (status == "lost")
         startLevel(n);
-	    console.log("Try again");
       else if (n < plans.length - 1)
         startLevel(n + 1);
       else
