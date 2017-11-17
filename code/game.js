@@ -523,7 +523,7 @@ function runGame(plans, Display) {
       if (status == "lost")
 		console.log("Try again");
         startLevel(n);
-      else if (n < plans.length - 1)
+      else (n < plans.length - 1)
         startLevel(n + 1);
       else 
 		textSize(36);
