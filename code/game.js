@@ -447,7 +447,8 @@ Level.prototype.playerTouched = function(type, actor) {
          })) {
       this.status = "won";
       this.finishDelay = 1;
-	  console.log("You won!");
+	  alert("You Won!!!");
+	  //console.log("You won!");
     }
   }
 };
