@@ -436,7 +436,6 @@ Level.prototype.playerTouched = function(type, actor) {
     this.status = "lost";
     this.finishDelay = 1;
 	//console.log("Try Again");
-	textSize(36);
 	text("You Won!");
   } else if (type == "coin") {
     this.actors = this.actors.filter(function(other) {
