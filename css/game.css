@@ -3,7 +3,7 @@
                  border-spacing: 0;   }
 .background td { padding: 0;          }
 .lava          { background: rgb(139, 0, 0); }
-.wall          { background: rgb (222, 184, 135);   }
+.wall          { background: gray;    }
 
 .actor    { position: absolute;  }
 .boost    { background: rgb(255, 165, 0);}
