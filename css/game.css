@@ -1,8 +1,8 @@
-.background    { background: rgb(105, 105, 105);
+.background    { background: rgb( 139, 69, 19);
                  table-layout: fixed;
                  border-spacing: 0;   }
 .background td { padding: 0;          }
-.lava          { background: rgb(139, 0, 0); }
+.lava          { background: rgb( 0, 0, 0); }
 .wall          { background: gray;    }
 
 .actor    { position: absolute;  }
