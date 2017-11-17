@@ -521,13 +521,10 @@ function runGame(plans, Display) {
     // Pass in a reference to Display function, DOMDisplay (in index.html).
     runLevel(new Level(plans[n]), Display, function(status) {
       if (status == "lost")
-		console.log("Try again");
         startLevel(n);
       else if (n < plans.length - 1)
         startLevel(n + 1);
-      else 
-		//textSize(36);
-        //text("YOU WIN!!!", 100, 200);	
+      else
         console.log("You win!");
     });
   }
