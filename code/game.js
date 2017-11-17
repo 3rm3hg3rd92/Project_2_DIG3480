@@ -1,7 +1,8 @@
 var actorChars = {
   "@": Player,
+  "$": Boost,
   "o": Coin, // A coin will wobble up and down
-  "y": Platform,
+  "y": Enemy,// come back to this
   "=": Lava, "|": Lava, "v": Lava, "<": Lava  
 };
 
@@ -38,8 +39,6 @@ function Level(plan) {
       // Because there is a third case (space ' '), use an "else if" instead of "else"
       else if (ch == "!")
         fieldType = "lava";
-	  else if (ch == "y")
-		fieldType = "platform";  
 
       // "Push" the fieldType, which is a string, onto the gridLine array (at the end).
       gridLine.push(fieldType);
@@ -82,6 +81,14 @@ function Player(pos) {
 }
 Player.prototype.type = "player";
 
+function Boost(pos) {
+	
+	this.basePos = this.pos = pos.plus(new Vector(0.2, 0.1));
+	this.size = new Vector(0.8, 0.8);
+	this.wobble = Math.random() * Math.PI * 2;
+}
+Boost.prototype.type = "boost";
+
 // Add a new actor type as a class
 function Coin(pos) {
   this.basePos = this.pos = pos.plus(new Vector(0.2, 0.1));
@@ -91,13 +98,12 @@ function Coin(pos) {
 }
 Coin.prototype.type = "coin";
 
-function Platform(pos, ch) {
+function Enemy(pos) {
 	this.pos = pos;
-	this.size = new Vector(3, 1);
-	this.speed = new Vector(2, 0);
-	
+	this.size = new Vector(2, 2);
+	this.speed = new Vector(1, 0);
 }
-Platform.prototype.type = "platform";
+Enemy.prototype.type = "enemy";
 
 // Lava is initialized based on the character, but otherwise has a
 // size and position
@@ -235,8 +241,6 @@ Level.prototype.obstacleAt = function(pos, size) {
   // Consider the sides and top and bottom of the level as walls
   if (xStart < 0 || xEnd > this.width || yStart < 0)
     return "wall";
-  if (xStart < 0 || xEnd > this.width || yStart <0)
-	return "platform";  
   if (yEnd > this.height)
     return "lava";
 
@@ -297,6 +301,41 @@ Lava.prototype.act = function(step, level) {
   else
     this.speed = this.speed.times(-1);
 };
+//boost
+var maxStep = 0.05;
+
+var wobbleSpeed = 5, wobbleDist = 0.08;
+
+Boost.prototype.act = function(step) {
+  this.wobble += step * wobbleSpeed;
+  var wobblePos = Math.sin(this.wobble) * wobbleDist;
+  this.pos = this.basePos.plus(new Vector(0, wobblePos));
+};
+
+var maxStep = 0.05;
+
+var wobbleSpeed = 5, wobbleDist = 0.08;
+
+Boost.prototype.act = function(step) {
+  this.wobble += step * wobbleSpeed;
+  var wobblePos = Math.sin(this.wobble) * wobbleDist;
+  this.pos = this.basePos.plus(new Vector(0, wobblePos));
+};
+
+var maxStep = 0.05;
+
+var playerXSpeed = 7;
+
+Enemy.prototype.act = function(step, level) {
+	
+	var newPos = this.pos.plus(this.speed.times(step));
+  if (!level.obstacleAt(newPos, this.size))
+    this.pos = newPos;
+  else if (this.repeatPos)
+    this.pos = this.repeatPos;
+  else
+    this.speed = this.speed.times(-1);
+}
 
 
 var maxStep = 0.05;
@@ -393,6 +432,11 @@ Level.prototype.playerTouched = function(type, actor) {
 
   // if the player touches lava and the player hasn't won
   // Player loses
+  if (type == "enemy" && this.status== null){
+	  this.status = "lost";
+	  this.finishDelay = 1;
+  } else if (type == "boost")
+	  
   if (type == "lava" && this.status == null) {
     this.status = "lost";
     this.finishDelay = 1;
