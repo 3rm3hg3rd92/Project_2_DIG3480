@@ -435,8 +435,7 @@ Level.prototype.playerTouched = function(type, actor) {
   if (type == "lava" && this.status == null) {
     this.status = "lost";
     this.finishDelay = 1;
-	//console.log("Try Again");
-	text("You Won!");
+	console.log("Try Again");
   } else if (type == "coin") {
     this.actors = this.actors.filter(function(other) {
       return other != actor;
