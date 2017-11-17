@@ -1,15 +1,15 @@
-.background    { background: rgb(52, 166, 251);
+.background    { background: rgb(0, 0, 0);
                  table-layout: fixed;
                  border-spacing: 0;   }
 .background td { padding: 0;          }
-.lava          { background: rgb(255, 100, 100); }
-.wall          { background: white;   }
+.lava          { background: rgb(139, 0, 0); }
+.wall          { background: rgb (222, 184, 135);   }
 
 .actor    { position: absolute;  }
 .boost    { background: rgb(255, 165, 0);}
 .coin     { background: rgb(241, 229, 89); }
 .enemy    { background: green; }
-.player   { background: rgb(64, 64, 64); }
+.player   { background: rgb(0, 255, 255); }
 
 .game {
   overflow: hidden;
