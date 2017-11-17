@@ -525,7 +525,7 @@ function runGame(plans, Display) {
         startLevel(n);
       else if (n < plans.length - 1)
         startLevel(n + 1);
-      else
+      else if
 		textSize(36);
         text("YOU WIN!!!", 100, 200);	
         //console.log("You win!");
