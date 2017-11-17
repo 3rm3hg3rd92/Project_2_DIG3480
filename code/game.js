@@ -428,6 +428,7 @@ Level.prototype.playerTouched = function(type, actor) {
 	  this.status = "lost";
 	  this.finishDelay = 1;
   } else if (type == "boost")
+	  //Could not get my boost to work :'(
 	  //this.speed = new Vector((playerXSpeed + 0.15)/3 , (jumpSpeed + 0.15)/3;
       this.actors = this.actors.filter(function(other) {
 		  return other != actor;
