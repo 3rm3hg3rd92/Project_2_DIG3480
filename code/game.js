@@ -414,9 +414,7 @@ Player.prototype.act = function(step, level, keys) {
     //textSize("")
 
   // Losing animation
-  if (level.status == "lost") {
-	textSize(36);
-	text("Try Again", 100, 200);
+  if (level.status == "lost") {  
     this.pos.y += step;
     this.size.y -= step;
   }
@@ -437,6 +435,7 @@ Level.prototype.playerTouched = function(type, actor) {
   if (type == "lava" && this.status == null) {
     this.status = "lost";
     this.finishDelay = 1;
+	console.log("Try Again");
   } else if (type == "coin") {
     this.actors = this.actors.filter(function(other) {
       return other != actor;
@@ -447,6 +446,7 @@ Level.prototype.playerTouched = function(type, actor) {
          })) {
       this.status = "won";
       this.finishDelay = 1;
+	  console.log("You won!");
     }
   }
 };
