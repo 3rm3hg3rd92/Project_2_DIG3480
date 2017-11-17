@@ -415,7 +415,8 @@ Player.prototype.act = function(step, level, keys) {
 
   // Losing animation
   if (level.status == "lost") {
-	console.log("try again");  
+	textSize(36);
+	text("Try Again", 100, 200);
     this.pos.y += step;
     this.size.y -= step;
   }
