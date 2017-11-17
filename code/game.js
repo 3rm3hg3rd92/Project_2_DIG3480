@@ -326,6 +326,7 @@ var maxStep = 0.05;
 
 var playerXSpeed = 7;
 
+// Enemy
 Enemy.prototype.act = function(step, level) {
 	
 	var newPos = this.pos.plus(this.speed.times(step));
@@ -362,7 +363,7 @@ var maxStep = 0.05;
 
 var playerXSpeed = 7;
 
-
+//Player
 Player.prototype.moveX = function(step, level, keys) {
   this.speed.x = 0;
   if (keys.left) this.speed.x -= playerXSpeed;
@@ -426,7 +427,10 @@ Level.prototype.playerTouched = function(type, actor) {
 	  this.status = "lost";
 	  this.finishDelay = 1;
   } else if (type == "boost")
-	  
+	  this.speed = new Vector((playerXSpeed + 0.15)/3 , (jumpSpeed + 0.15)/3;
+      this.actors = this.actors.filter(function(other) {
+		  return other != actor;
+	  });
   if (type == "lava" && this.status == null) {
     this.status = "lost";
     this.finishDelay = 1;
